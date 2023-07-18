@@ -1,5 +1,14 @@
 package edu.uoc.elc.lti.platform.deeplinking;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import edu.uoc.elc.lti.exception.InvalidLTICallException;
 import edu.uoc.elc.lti.tool.deeplinking.Settings;
 import edu.uoc.lti.deeplink.DeepLinkingTokenBuilder;
@@ -8,14 +17,6 @@ import edu.uoc.lti.deeplink.content.Item;
 import edu.uoc.lti.deeplink.content.LinkItem;
 import edu.uoc.lti.deeplink.content.LtiResourceItem;
 import edu.uoc.lti.jwt.deeplink.JWSTokenBuilder;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.Arrays;
 
 /**
  * @author xaracil@uoc.edu
@@ -28,7 +29,7 @@ public class DeepLinkingClientTest {
 	@Before
 	public void setUp() {
 		this.settings = Mockito.mock(Settings.class);
-		this.sut = new DeepLinkingClient(null, null, null, null, null, null, settings);
+		this.sut = new DeepLinkingClient(null, null, null, null, null, null, null, settings);
 		Mockito.when(settings.getAccept_types()).thenReturn(Arrays.asList("link"));
 		Mockito.when(settings.getDeep_link_return_url()).thenReturn("https://lti-ri.imsglobal.org/platforms/68/contexts/88/deep_links");
 	}
@@ -152,6 +153,7 @@ public class DeepLinkingClientTest {
 		return new DeepLinkingClient(deepLinkingTokenBuilder(),
 						"https://www.uoc.edu",
 						"Universitat Oberta de Catalunya",
+						"1",
 						null,
 						"",
 						"nonce",
