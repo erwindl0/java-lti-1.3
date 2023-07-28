@@ -60,9 +60,39 @@ in the `edu.uoc.elc.lti.tool.ToolBuilders` class
  
 ## Usage
 
-1. Set your maven installation to work with Github packages, following https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-to-github-packages
+1. Set your maven installation to work with Github packages, following the [Github Docs](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-to-github-packages). Add the following configuration to your maven `settings.xml` file:
 
-Repository info:
+    ```xml
+    <servers>
+      <server>
+        <id>github-uoc-lti</id>
+        <username>USERNAME</username>
+        <password>GITHUB_TOKEN</password>
+      </server>
+      <server>
+        <id>github-uoc-lti-core</id>
+        <username>USERNAME</username>
+        <password>GITHUB_TOKEN</password>
+      </server>
+      <server>
+        <id>github-uoc-lti-jwt</id>
+        <username>USERNAME</username>
+        <password>GITHUB_TOKEN</password>
+      </server>
+    </servers>
+    ```
+
+2. Add the dependency to your `pom.xml` file:
+
+    ```xml
+    <dependency>
+      <groupId>edu.uoc.elc.lti</groupId>
+      <artifactId>lti-13</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    ```  
+
+3. Add the following repositories to your `pom.xml` file & verify that the repositories's IDs matches the server's IDs (set at step 1):
   
 ```xml
 <repositories>
@@ -83,16 +113,6 @@ Repository info:
     </repository>
 </repositories>
 ```
-
-2. Add the dependency to your `pom.xml` file:
-
-```xml
-  <dependency>
-    <groupId>edu.uoc.elc.lti</groupId>
-    <artifactId>lti-13</artifactId>
-    <version>0.0.2</version>
-  </dependency>
-```  
 
 ## Contributing
 
